@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+      <h3>Documents</h3>
+      <h5>search document or select category</h5>  
+    
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-3 col-mg-2">
+      <li (click)="all()">All</li>
+      <li (click)="financial()">Financial</li>
+      <li (click)="technical()">Technical</li>
+      <li (click)="marketing()">Marketing</li>
+      <li (click)="hr()">Human Resource</li>
+    </div>
+
+
+
+    <div class="col-lg-9">
+        <input type="text" placeholder="Search.." [(ngModel)]='value' />
+        <div class="row">
+            <div *ngFor="let d of (details|myfiltervalue:value|myfiltervalue1:value1)" class="card">
+              <div class="card-body">
+                    <h5 class="card-title">{{d.type}}</h5>
+                    <p class="card-text">{{d.data}}</p>          
+                </div> 
+            </div>    
+      </div>
+    </div>
+
+  </div>
+</div>

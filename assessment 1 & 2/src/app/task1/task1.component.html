@@ -1,0 +1,77 @@
+<table class="table">
+    <thead>
+        <tr>
+          <th>ID</th>
+          <th>ProductName</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.productname}}</td>
+            <td>{{user.quantity}}</td>
+            <td>{{user.price}}</td>
+            <td>
+                <button type="button" class="btn btn-primary" (click)="edit(user)">Edit</button>
+                <button type="button" class="btn btn-danger" (click)="onDelete(user.id)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+    <button type="button" class="btn btn-primary" (click)="addnew()">Add New</button>
+</table>
+
+<div *ngIf="showedit">
+    <div>
+      Product Id <input disabled type="text" [(ngModel)]='emptoadd.id'>
+    </div>
+    
+    <div>
+        ProductName <input type="text" [(ngModel)]='emptoadd.productname'>
+    </div>
+    
+    <div>
+        Quantity <input type="text" [(ngModel)]='emptoadd.quantity'>
+    </div>    
+    <div>
+        Price <input type="text" [(ngModel)]='emptoadd.price'>
+    </div>    
+
+
+    <div>
+        <button (click)="update()">Update</button>
+    </div>
+    
+    <div>
+        <button (click)="showedit=false">Cancel </button>
+    </div>
+</div>
+
+
+<div *ngIf="showedit1">
+    <div>
+       Product Id <input type="text" [(ngModel)]='emptoadd.id'>
+    </div>
+      
+    <div>
+        ProductName <input type="text" [(ngModel)]='emptoadd.productname'>
+    </div>
+      
+    <div>
+        Quantity <input type="text" [(ngModel)]='emptoadd.quantity'>
+    </div>    
+    
+    <div>
+        Price <input type="text" [(ngModel)]='emptoadd.price'>
+    </div>    
+
+    <div>
+        <button (click)="add()">Add</button>
+    </div>
+    
+    <div>
+        <button (click)="showedit1=false">Cancel </button>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h3>Fibonacci</h3>
+            <p>Enter number</p>
+            <input type="text" [(ngModel)]="val">
+            <button (click)="fib()">Submit</button>
+
+            <div *ngFor="let a of arr">
+                <h5>{{a}}</h5>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <h3>Print Numbers</h3>
+            <p>Enter number</p>
+            <input type="text" [(ngModel)]="val1">
+            <button (click)="num()">Submit</button>
+
+            <div *ngFor="let a of arr1">
+                <h5>{{a}}</h5>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-6">
+            <h3>Root number</h3>
+            <p>Enter number</p>
+            <input type="text" [(ngModel)]="val2">
+            <button (click)="root()" class="btn btn-success">Submit</button>
+
+            <div>
+                <h5>SquareRoot:{{temp}}</h5>
+                <h5>CubeRoot:{{temp1}}</h5>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <h3>Sorting</h3>
+            <p>Enter number</p>
+            <input type="text" [(ngModel)]="val3">
+            <button (click)="Sort()">Submit</button>
+
+            <div *ngFor="let a of arr4"> 
+                <h3>even:{{a}}</h3>
+            </div>
+
+            <div *ngFor="let a of arr5"> 
+                <h3>odd:{{a}}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,9 @@
+div{
+    width: 100%;
+    height: 700px;
+}
+
+select{
+    margin-left: 50%;
+    font-size: 26px;
+}
