@@ -1,0 +1,363 @@
+
+<div class="container-fluid">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#"><i class="bi bi-people-fill"></i>Customer Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link active" href="#"><button class="btn btn-light">Customers</button></a>
+        <a class="nav-item nav-link" href="#"><button class="btn" style="color: white;">orders</button></a>
+        <a class="nav-item nav-link" href="#"><button class="btn" style="color: white;">About</button></a>
+        <a class="nav-item nav-link" href="#"><button class="btn" style="color: white;">Login</button></a>      
+      </div> 
+    </div>
+  </nav>
+
+<div *ngIf="pg1==true">
+  <div class="r2"> 
+    <h2><i class="bi bi-person-fill"></i>Customers</h2>
+  </div>
+
+  
+  <div id=data>
+    <div>
+      <ul class="nav">
+        <!-- <li class="nav-item"><a class="nav-link active"><button type="button" (click)="view()" class="btn btn-light"><i class="bi bi-grid-fill">CardView</i></button></a></li>
+        
+        <li class="nav-item"><a class="nav-link active"><button type="button" (click)="view1()" class="btn btn-light"><i class="bi bi-grid-fill">ListView</i></button></a></li>
+        <li class="nav-item"><button type="button" (click)="view()" class="btn btn-light"><i class="bi bi-grid-fill">CardView</i></button></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-list">ListView</i></a></li>
+        <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-geo-alt-fill">MapView</i></a></li>
+        <li class="nav-item"><a class="nav-link" href="#" ><i class="bi bi-plus">NewCustomer</i></a></li> -->
+        <li><a class="btn" (click)="view()"><i class="bi bi-grid-fill">CardView</i></a></li>
+        <li><a class="btn" (click)="view1()"><i class="bi bi-list">ListView</i></a></li>
+        <li><a class="btn" (click)="view2()"><i class="bi bi-geo-alt-fill">MapView</i></a></li>
+        <li><a class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="newcust()"><i class="bi bi-plus">NewCustomer</i></a></li>
+        <li class="nav-item" id="txt"><span class="txt"><b>Filter</b><input type="text" placeholder="Search Here..." [(ngModel)]='value'/></span></li>
+        
+      </ul>
+    </div>
+
+
+    <div class="cardview" *ngIf="show==true">
+    <div class="row">
+      <div *ngFor="let d of details|myfilter:value |  paginate: { itemsPerPage: tablesize, currentPage: page, totalItems:count }; let i=index" class="card" >
+        <h5 class="card-header bg-primary" id="crd1" >{{d.first}} {{d.last}}<i class="bi bi-pencil-square" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal" id="crd" (click)="edit(d)"></i></h5>
+          <div class="card-body">
+              <div class="col-lg-12">
+                <span class="material-icons">person</span>
+                <div class="col-lg-6" id="body1">
+                    <p class="card-text">{{d.city}}</p>
+                    <p class="card-text">{{d.state}}</p>
+                    <p><a class="btn" (click)="order(d.id)" style="color: blue;">View Orders</a></p>
+                </div>
+              </div>
+          </div>
+      </div>
+      <pagination-controls previousLabel="Prev" nextLabel="Next"  (pageChange)=" TableDataChange($event)" style="font-size:20px"></pagination-controls>
+    </div>
+    
+    <!-- <nav aria-label="...">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li> 
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+      </ul>
+    </nav> -->
+  </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+  <div class="listview" id="data" *ngIf="show1==true">
+    <table class="table h-auto">
+      <thead>
+          <tr>
+            <th></th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Order Total</th>
+          </tr>
+        </thead>
+
+      <tbody>
+          <tr *ngFor="let d of (details|myfilter:value)">
+              <td><span class="material-icons">person</span></td>
+              <td class="text-primary">{{d.first}}</td>
+              <td>{{d.last}}</td>
+              <td>{{d.address}}</td>
+              <td>{{d.city}}</td>
+              <td>{{d.state}}</td>
+              <td>{{d.total}}</td>
+              <td><a href="#" style="text-decoration: none;">View Orders</a></td>
+          </tr>
+      </tbody>
+  </table>
+
+  </div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title text-primary" id="exampleModalLabel">Add Details</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">First Name</label>
+            <input type="text" formControlName="first" class="form-control" id="exampleInputFName">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">LastName</label>
+            <input type="text" formControlName="last" class="form-control" id="exampleInputLNAme">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Address</label>
+            <input type="text" formControlName="address" class="form-control" id="exampleInputAddr">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">City</label>
+            <input type="text" formControlName="city" class="form-control" id="exampleInputCity">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">State</label>
+            <input type="text" formControlName="state" class="form-control" id="exampleInputState">
+          </div>
+        </form>
+
+        <!-- <div>
+         FirstName <input type="text" [(ngModel)]='toadd.first'>
+       </div>
+         
+       <div>
+           LastName <input type="text" [(ngModel)]='toadd.last'>
+       </div>
+         
+       <div>
+           Address <input type="text" [(ngModel)]='toadd.address'>
+       </div>    
+       
+       <div>
+           City <input type="text" [(ngModel)]='toadd.city'>
+       </div> 
+       <div>
+           State <input type="text" [(ngModel)]='toadd.state'>
+       </div>  -->
+        
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="close" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="add()" *ngIf="ad==true">Add changes</button>
+        <button type="button" class="btn btn-primary" (click)="update()" *ngIf="ad==false">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="custinfo" *ngIf="pg1==false">
+  <div class="r2"> 
+    <h2><i class="bi bi-person-fill"></i>Customer Information</h2>
+  </div>
+
+
+  <div id=data>
+
+    <div>
+      <ul class="nav">
+        <li><a class="btn" (click)="view()"><i class="bi bi-list-ul">Customer Details</i></a></li>
+        <li><a class="btn" (click)="view1()"><i class="bi bi-tags-fill">Customer Orders</i></a></li>
+        <li><a class="btn" (click)="view()" ><i class="bi bi-pencil-square">Edit customer</i></a></li>        
+      </ul>
+    </div>
+
+    <!-- <div *ngFor="let a of purchase">
+      <tr>
+        <td>{{a.name1}}</td>
+        <td>{{a.price1}}</td>
+      </tr>
+      <tr>
+        <td>{{a.name2}}</td>
+        <td>{{a.price2}}</td>
+      </tr>
+    </div> -->
+
+
+    <table class="table w50">
+      <div *ngFor="let a of purchase">
+      <thead>
+        <td><h1>Order For Ted James</h1></td>
+      </thead>
+      <tr>
+        <td>{{a.name1}}</td>
+        <td>{{a.price1}}</td>
+      </tr>
+      <tr>
+        <td>{{a.name2}}</td>
+        <td>{{a.price2}}</td>
+      </tr>
+    </div>
+    </table>
+
+
+
+    <table class="table">
+      <thead>
+        <td><h1>Order For Ted James</h1></td>
+      </thead>
+      <tr>
+        <td>BasketBall</td>
+        <td>$7.99</td>
+      </tr>
+      <tr>
+        <td>Shoes</td>
+        <td>$199.99</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>$207.98</td>
+      </tr>
+    </table>
+
+
+  </div>
+
+ </div>
+
+
+
+
+ <!-- <div class="mapview" *ngIf="show2==true">
+
+  <div id=data>
+    <div>
+      <div class="row">
+        <div *ngFor="let d of (details|myfilter:value)|  paginate: { itemsPerPage: tablesize1, currentPage: page1 }; ">   
+
+    <div>
+      <ul class="nav">
+        <li><a class="btn" (click)="view()"><i class="bi bi-list-ul">Customer Details</i></a></li>
+        <li><a class="btn" (click)="view1()"><i class="bi bi-tags-fill">Customer Orders</i></a></li>
+        <li><a class="btn"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square" (click)="edit(d)">Edit customer</i></a></li>        
+      </ul>
+    </div>
+
+
+                 
+                    
+                      <div class="col-lg-2">
+                        <span class="material-icons">person</span>
+                        <div class="col-lg-6" id="body1">
+                            <h2><b>{{d.first}} {{d.last}}</b></h2>
+                            <p>{{d.city}}</p>
+                            <p>{{d.state}}</p>
+                        </div>
+                        
+                      </div>
+                      <div class="col-lg-4">
+                        {{d.loc}}
+                      </div>
+                      <button class="btn btn-danger" (click)="viewmap(d)">ViewMAP</button>
+                 
+                  <div id="map" *ngIf="mapv==true">
+                    
+                  </div>
+  
+        </div>
+        <pagination-controls previousLabel="Prev" nextLabel="Next"  (pageChange)=" TableDataChange1($event)" style="font-size:20px"></pagination-controls>
+      </div>
+    </div>
+  </div>
+ 
+ </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="mapview" *ngIf="show2==true">
+
+  <div id=data>
+    <div>
+      <div class="row">
+        <!-- <div *ngFor="let d of (details|myfilter:value)   ">   
+
+    <div>
+      <ul class="nav">
+        <li><a class="btn" (click)="view()"><i class="bi bi-list-ul">Customer Details</i></a></li>
+        <li><a class="btn" (click)="view1()"><i class="bi bi-tags-fill">Customer Orders</i></a></li>
+        <li><a class="btn"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square" (click)="edit(d)">Edit customer</i></a></li>        
+      </ul>
+    </div>
+
+  </div> -->
+       
+</div>
+                 
+              
+                      <button class="btn btn-danger" (click)="viewmap1()">ViewMAP</button>
+                 
+                  <div id="map" *ngIf="mapv==true">
+                    
+                  </div>
+  
+        
+    </div>
+  </div>
+ 
+ </div>
+
+ 
+
+
+
+
+
+  
+
+
+
+
+ <!-- <div id="map"></div> -->
+</div>
+<router-outlet></router-outlet> 

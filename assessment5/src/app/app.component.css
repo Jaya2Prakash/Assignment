@@ -1,0 +1,104 @@
+.container-fluid{
+    padding: 0%;
+}
+#map {
+    height: 500px;
+    width: 1200px;
+    /* margin: auto; */
+  }
+
+h4{
+    margin: 5px;
+    top: 10px;
+}
+.btn{
+    border: 0px;
+}
+#page{
+    font-size:20px
+}
+i{ 
+    margin-right: 10px;
+    height: 15px;
+    width: 10px;
+}
+.fa{
+    margin-left: 35px;
+    margin-top: 25px;
+}
+div ul li a{
+    color:black
+}
+#txt{
+    margin-left: 650px;
+}
+#data{
+    margin-left: 100px;
+    margin-top: 15px;
+    border-radius: none;
+}
+
+#plus{
+    padding: 0px;
+    width: 16px;
+    height: 16px;
+}
+
+#crd{
+    float: right;
+    color:white
+}
+#crd1{ 
+    color:white;
+    font-size:18px
+}
+
+.card{
+    width: 300px;
+    margin: 30px; 
+    padding: 0px;  
+}
+
+#body img{
+    float: left;
+}
+
+#body1 {
+    float: right;
+}
+.card-text{
+    font-size: 20px;
+}
+.for{
+    margin-bottom: 20px;
+}
+.bi-person-fill{
+   font-size: 20px;
+}
+tr{
+    /* padding-top: 5px; */
+    text-align: center;
+    line-height: 35px;
+    font-size: 16px;
+}
+
+.navbar-brand{
+    padding-left: 10px;
+}
+
+.r2{
+    margin-left: 25px;
+}
+
+input{
+    margin-left: 12px;
+    border-radius: 6px;
+}
+
+.material-icons{
+    font-size: 60px;
+}
+
+#first{
+    color: blue;
+}
